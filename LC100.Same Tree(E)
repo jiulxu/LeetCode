@@ -1,0 +1,42 @@
+class TreeNode{
+	public int val;
+	public TreeNode lchild;
+	public TreeNode rchild;
+	public TreeNode(int x){
+		val=x;
+		}
+	}
+public class Solution{
+	public static boolean isSameTree(TreeNode p,TreeNode q){
+		if(p!=null||q!=null){
+			if(p==null&&q!=null) return false;
+			else if(p!=null&&q==null) return false;
+			else{
+				if(p.val==q.val){
+					if(isSameTree(p.lchild,q.lchild)&&isSameTree(p.rchild,q.rchild)) return true;
+					else return false;
+					}
+				else return false;
+				}
+			}
+		else return true;
+		}
+	public static void main(String[] args){
+		TreeNode p=new TreeNode(1);
+		p.lchild=new TreeNode(2);
+		p.rchild=new TreeNode(3);
+		p.lchild.lchild=new TreeNode(4);
+		p.lchild.rchild=new TreeNode(5);
+		p.rchild.lchild=new TreeNode(6);
+		p.rchild.rchild=new TreeNode(7);
+		TreeNode q=new TreeNode(1);
+		q.lchild=new TreeNode(2);
+		q.rchild=new TreeNode(3);
+		q.lchild.lchild=new TreeNode(4);
+		q.lchild.rchild=new TreeNode(5);
+		q.rchild.lchild=new TreeNode(6);
+		//q.rchild.rchild=new TreeNode(7);
+		if(Solution.isSameTree(p,q)) System.out.println("They are same!");
+		else System.out.println("They are not same!");
+		}
+	}
